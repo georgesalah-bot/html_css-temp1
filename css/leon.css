@@ -1,4 +1,12 @@
 /*Global Rules*/
+/* variables */
+:root {
+  --main-color: #10cab7;
+  --secondry-color: #2c4755;
+  --section-padding: 60px;
+  --section-background-color: #f6f6f6;
+}
+/* end variables */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -15,7 +23,43 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
-
+/* animation */
+@keyframes growDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(0.7);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+/* end animation */
+/* start components */
+.special-heading {
+  color: #ebeced;
+  font-size: 90px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -3px;
+  margin: 0;
+}
+.special-heading + p {
+  margin: -30px 0 0;
+  font-size: 20px;
+  text-align: center;
+  color: #797979;
+}
+@media (max-width: 767px) {
+  .special-heading {
+    font-size: 60px;
+  }
+  .special-heading + p {
+    margin-top: -20px;
+  }
+}
+/* end components */
 /* small */
 @media (min-width: 768px) {
   .container {
@@ -92,12 +136,17 @@ header .links ul {
   min-width: 200px;
   top: calc(100% + 15px);
   display: none;
-
-
+}
+header .links:hover ul {
+  animation-name: growDown;
+  animation-duration: 200ms;
+  animation-timing-function: linear;
+  display: block;
+  z-index: 100;
 }
 
 header .links ul::before {
-  content: "";
+  content: '';
   border-width: 10px;
   border-style: solid;
   position: absolute;
@@ -114,29 +163,224 @@ header .links ul li a {
 
   transition: 0.3s;
 }
-header .links ul li:not(:last-child) a{
-  border-bottom:2px solid #ddd;
+header .links ul li:not(:last-child) a {
+  border-bottom: 2px solid #ddd;
 }
 
 header .links ul li a:hover {
   padding-left: 25px;
 }
-@keyframes growDown {
-  0% {
-      transform: scaleY(0)
-  }
-  80% {
-      transform: scaleY(.7)
-  }
-  100% {
-      transform: scaleY(1)
-  }
-}
-header .links:hover ul {
-  animation-name: growDown;
-  animation-duration: 200ms;
-  animation-timing-function: linear;
-  display: block;
-}
+
 /* end header */
 
+/* start landing section */
+.landing {
+  background-image: url('../imgs/gradient-mountain-landscape_23-2149162009.avif');
+  background-size: cover;
+  height: calc(100vh - 64px);
+  position: relative;
+}
+
+.intro-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 320px;
+  max-width: 100%;
+}
+.intro-text h1 {
+  margin: 0;
+  color: var(--main-color);
+  font-size: 50px;
+}
+/* end landing section */
+
+.intro-text p {
+  font-size: 19px;
+  line-height: 1.8;
+}
+/* end landing section */
+
+/* start features */
+.features {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background-color);
+}
+.features .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+.feat {
+  padding: 20px;
+  text-align: center;
+}
+.feat i {
+  color: var(--main-color);
+}
+.feat h3 {
+  font-weight: 800;
+  margin: 30px 0;
+}
+.feat p {
+  line-height: 1.8;
+  color: #777;
+  font-size: 17px;
+}
+/* end features */
+
+/* start services */
+.services {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+.services .service-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin-top: 100px;
+  grid-gap: 20px;
+}
+.col .srv {
+  display: flex;
+  margin-bottom: 30px;
+}
+@media (max-width: 767px) {
+  .col .srv {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.col .srv i {
+  color: var(--main-color);
+  flex-basis: 60px;
+}
+.col .srv .text {
+  flex: 1;
+}
+.col .srv .text h3 {
+  margin: 0 0 20px;
+}
+.col .srv .text p {
+  color: #444;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.col .image {
+  text-align: center;
+  position: relative;
+}
+.col .image img {
+  width: 260px;
+}
+.col .image::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  background-color: var(--secondry-color);
+  width: 53px;
+  height: calc(100% + 100px);
+  top: -50px;
+  z-index: -100;
+}
+@media (max-width: 1199px) {
+  .image-column {
+    display: none;
+  }
+}
+/* end services */
+/* start portofolio */
+.portofolio {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background-color);
+}
+.portofolio .portofolio-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+  margin-top: 80px;
+}
+.portofolio .portofolio-content .card img {
+  height: 300px;
+  max-width: 100%;
+}
+.portofolio .portofolio-content .card {
+  background-color: white;
+}
+.portofolio .portofolio-content .card .info {
+  padding: 20px;
+}
+.portofolio .portofolio-content .card .info h3 {
+  margin: 0;
+}
+.portofolio .portofolio-content .card .info p {
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+/* end portofolio */
+/* start about */
+.about {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+.about .about-content {
+  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.about-content .image {
+  position: relative;
+  width: 250px;
+  height: 375px;
+}
+.about-content .image img {
+  max-width: 100%;
+}
+
+.about-content .image::before {
+  content: "";
+  position: absolute;
+  background-color: #ebeced;
+  width: 120px;
+  height: calc(46% + 100px);
+  top: -50px;
+  z-index: -1;
+  left: -20px;
+}
+.about-content .image::after {
+  content: "";
+  position: absolute;
+
+  width: 80px;
+  height: 91px;
+  right: -96px;
+  top: -17px;
+  border-left: 60px solid var(--main-color);
+  border-bottom: 60px solid var(--main-color);
+  z-index: -1;
+}
+.about .about-content .text {
+  flex-basis: calc(100% - 400px)
+}
+.about .about-content .text p:first-of-type {
+  font-weight: bold;
+  line-height: 2;
+  margin-bottom: 50px;
+}
+.about .about-content .text hr {
+  width: 50%;
+  display: inline-block;
+  border-color: #10cab7;
+}
+.about .about-content .text p:last-of-type {
+  line-height: 2;
+  color: #777;
+}
+
+/* end about */
